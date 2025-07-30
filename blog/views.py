@@ -11,7 +11,11 @@ def post_list(request):
         posts = paginator.page(page)
     except PageNotAnInteger:
         # Если страница не является целым числом, возвращаем первую страницу
-    return render(request, 'blog/post/list.html', {'posts': posts})
+        posts = paginator.page(1)
+    except EmptyPage:
+        # Если номер страницы больше, чем общее количество страниц, возвращаем последнюю
+        posts = paginator.page(paginator.num_pages)
+    return render(request, 'blog/post/list.html', {'page':page, 'posts': posts})
 
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post, slug=post,
