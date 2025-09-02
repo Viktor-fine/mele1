@@ -26,8 +26,11 @@ def post_detail(request, year, month, day, post):
     return render(request, 'blog/post/detail.html', {'post':post})
 
 def num_page(request):
-    women = ['Анжелина Джоли', 'Дженифер Лоуренс', 'Джулия Робертс', 'Марго Робби', 'Ума Турман', 'Ариана Гранде']
+    women = ['Анжелина Джоли', 'Дженифер Лоуренс', 'Джулия Робертс', 'Марго Робби', 'Ума Турман', 'Ариана Гранде', 'Савичева']
     p = Paginator(women, 3)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
-    return render(request, 'blog/post/page.html')
+    name = 'Виктор'
+    q = 80
+    context = {'parametr': q, 'name': name }
+    return render(request, 'blog/post/page.html', context)
