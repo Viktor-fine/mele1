@@ -2,6 +2,17 @@
 {% block title %}Нумирация{% endblock %}
 {% block content %}
 <h3>Нумерация страниц</h3>
-<p>Имя: {{ name }}</p>
-<p>Количество эл-ов: {{ parametr }}</p>
+<!-- {% for contact in page_obj %}
+    <p>{{ contact }}</p>
+    {% endfor %} -->
+<br>
+<nav>
+    <ul>
+        {% for p in page_obj.paginator.page_range %}
+            <li>
+                <a href="?page={{ p }}">{{ p }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
 {% endblock  %}
