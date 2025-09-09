@@ -30,7 +30,4 @@ def num_page(request):
     p = Paginator(women, 3)
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
-    name = 'Виктор'
-    q = p.count
-    context = {'parametr': q, 'name': name}
-    return render(request, 'blog/post/page.html', {'page_obj': page_obj})
+    return render(request, 'blog/post/page.html', {'page_obj': page_obj, 'page_num': page_number})
