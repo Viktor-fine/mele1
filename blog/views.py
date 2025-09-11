@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 
 def post_list(request):
@@ -31,3 +34,11 @@ def num_page(request):
     page_number = request.GET.get('page')
     page_obj = p.get_page(page_number)
     return render(request, 'blog/post/page.html', {'page_obj': page_obj, 'page_num': page_number})
+
+def pages(request):
+    for num in range(43):
+        User.objects.create(username=f"{num}")
+    users = User.objects.all()
+    paginator = Paginator(users, 10)
+    a = paginator.num_pages
+    return render(request, 'blog/post/pages.html', {'a': a})
