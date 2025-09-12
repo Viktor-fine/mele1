@@ -36,9 +36,12 @@ def num_page(request):
     return render(request, 'blog/post/page.html', {'page_obj': page_obj, 'page_num': page_number})
 
 def pages(request):
-    for num in range(43):
-        User.objects.create(username=f"{num}")
-    users = User.objects.all()
-    paginator = Paginator(users, 10)
+    women = ['Анжелина Джоли', 'Дженифер Лоуренс', 'Джулия Робертс',
+            'Марго Робби', 'Ума Турман', 'Ариана Гранде',
+            'Савичева', 'А-студио', 'Чеботина',
+            'Орбакайте', 'Королёва', 'Салтыкова',
+            'Варум', 'Олегрова', 'Бабкина',
+            'Мия Бойко', 'Капустина',]
+    paginator = Paginator(women, 3)
     a = paginator.num_pages
-    return render(request, 'blog/post/pages.html', {'a': a})
+    return render(request, 'blog/post/pagina.html', {'a': a})
