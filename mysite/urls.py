@@ -20,7 +20,7 @@ from blog.views import num_page
 from blog.views import pages
 
 urlpatterns = [
-    path('', num_page, name='num_page'),
+    path('', pages, name='num_page'),
     path('page/', pages, name='pagin'),
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),
